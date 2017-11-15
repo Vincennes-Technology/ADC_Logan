@@ -6,7 +6,19 @@
 # Part of SunFounder LCD StarterKit
 # http://www.sunfounder.com/index.php?c=show&id=21&model=LCD%20Starter%20Kit
 # Modified to ADD VOLTSPERBIT AND RETURN FLOATING NUMBER
-
+#-------------------------------------------------------------------------------
+# __To wire__
+# Pin 1 of ADC to #17 on T-cobler
+# Pin 2 of ADC to middle of potometer on T-cobler
+# Pin 3 of ADC to ground on board
+# Pin 4 of ADC to ground on board
+# Pin 5 of ADC to #22 on T-cobler
+# Pin 6 of ADC to #27 on T-cobler
+# Pin 7 of ADC to #18 on T-cobler
+# Pin 8 of ADC to to 3.3V on T-cobler
+# Then you hook up the two outsides wires of the potometer
+# One to 3.3V on the cobblerand the other to ground on the board
+#--------------------------------------------------------------------------------
 import subprocess
 import time
 import os
@@ -67,6 +79,13 @@ def getADC(channel):
 if __name__ == "__main__":
         while True:
                 print "ADC[0]: {}\t ADC[1]: {}".format(getADC(0), getADC(1))
-                Output_String= "ADC[0]: {}\t ADC[1]: {}".format(getADC(0), getADC(1))
+                
+                Output_String = "ADC[0]: %.3f \t ADC[1]: %.3f" %(getADC(0), getADC(1))
+
                 time.sleep(1)
-                lcd.message(Output_String) 
+                lcd.message(Output_String)
+                time.sleep(2)
+                lcd.clear()
+                continue
+
+                 
